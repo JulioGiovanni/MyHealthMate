@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myhealthmate/presentation/constants/nav_items.dart';
 import 'package:myhealthmate/presentation/widgets/citas.dart';
+import 'package:myhealthmate/presentation/widgets/especialistas_card_busqueda.dart';
 import 'package:myhealthmate/presentation/widgets/home.dart';
 import 'package:myhealthmate/presentation/widgets/mensajes.dart';
 import 'package:myhealthmate/presentation/widgets/perfil.dart';
@@ -15,8 +16,9 @@ class InitialScreen extends StatefulWidget {
 
 class _InitialScreenState extends State<InitialScreen> {
   int _currentIndex = 0;
+  // const Home(),
   final _pagesList = [
-    const Home(),
+    const EspecialistasBusqueda(),
     const Citas(),
     const Mensajes(),
     const Perfil()
@@ -25,10 +27,13 @@ class _InitialScreenState extends State<InitialScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: Drawer(
-          child: ListView(),
+        // drawer: Drawer(
+        //   child: ListView(),
+        // ),
+        appBar: AppBar(
+          //Change the title of the app bar depending on the index
+          title: Text(navBarItems[_currentIndex].title),
         ),
-        appBar: AppBar(),
         body: IndexedStack(
           index: _currentIndex,
           children: _pagesList,

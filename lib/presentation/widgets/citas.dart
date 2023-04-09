@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myhealthmate/presentation/screens/detalle_cita_screen.dart';
 
 class Citas extends StatelessWidget {
   const Citas({super.key});
@@ -29,20 +30,30 @@ class Citas extends StatelessWidget {
                         height: 5,
                       ),
                   itemBuilder: (context, index) {
-                    return Card(
-                      child: ListTile(
-                        title: const Text('Categoría'),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text('Nombre y apellido especialista'),
-                            Text('Fecha'),
-                          ],
-                        ),
-                        trailing: const CircleAvatar(
-                          radius: 20,
-                          backgroundImage: NetworkImage(
-                              'https://www.w3schools.com/howto/img_avatar.png'),
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const DetalleCitaScreen()));
+                      },
+                      child: Card(
+                        elevation: 0,
+                        child: Container(
+                          color: Colors.white,
+                          child: ListTile(
+                            title: const Text('Categoría'),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text('Nombre y apellido especialista'),
+                                Text('Fecha'),
+                              ],
+                            ),
+                            trailing: const CircleAvatar(
+                              radius: 20,
+                              backgroundImage: NetworkImage(
+                                  'https://www.w3schools.com/howto/img_avatar.png'),
+                            ),
+                          ),
                         ),
                       ),
                     );
@@ -62,20 +73,30 @@ class Citas extends StatelessWidget {
                         height: 5,
                       ),
                   itemBuilder: (context, index) {
-                    return Card(
-                      child: ListTile(
-                        title: const Text('Categoría'),
-                        subtitle: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: const [
-                            Text('Nombre y apellido especialista'),
-                            Text('Fecha'),
-                          ],
-                        ),
-                        trailing: const CircleAvatar(
-                          radius: 20,
-                          backgroundImage: NetworkImage(
-                              'https://www.w3schools.com/howto/img_avatar.png'),
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const DetalleCitaScreen()));
+                      },
+                      child: Card(
+                        elevation: 0,
+                        child: Container(
+                          color: Colors.white,
+                          child: ListTile(
+                            title: const Text('Categoría'),
+                            subtitle: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: const [
+                                Text('Nombre y apellido especialista'),
+                                Text('Fecha'),
+                              ],
+                            ),
+                            trailing: const CircleAvatar(
+                              radius: 20,
+                              backgroundImage: NetworkImage(
+                                  'https://www.w3schools.com/howto/img_avatar.png'),
+                            ),
+                          ),
                         ),
                       ),
                     );

@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     //Width of the screen
-    final _widthScreen = MediaQuery.of(context).size.width;
+    final widthScreen = MediaQuery.of(context).size.width;
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -144,7 +144,7 @@ class _HomeState extends State<Home> {
               ),
               dropdownStyleData: DropdownStyleData(
                 maxHeight: 200,
-                width: _widthScreen * .9,
+                width: widthScreen * .9,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
                   color: Colors.transparent,

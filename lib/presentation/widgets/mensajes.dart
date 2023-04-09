@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myhealthmate/presentation/screens/chat_screen.dart';
 
 class Mensajes extends StatelessWidget {
   const Mensajes({super.key});
@@ -24,16 +25,26 @@ class Mensajes extends StatelessWidget {
               )),
           ListView.builder(
               itemBuilder: (context, index) {
-                return const Card(
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      radius: 20,
-                      backgroundImage: NetworkImage(
-                          'https://www.w3schools.com/howto/img_avatar.png'),
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const ChatScreen()));
+                  },
+                  child: Card(
+                    elevation: 0,
+                    child: Container(
+                      color: Colors.white,
+                      child: const ListTile(
+                        leading: CircleAvatar(
+                          radius: 20,
+                          backgroundImage: NetworkImage(
+                              'https://www.w3schools.com/howto/img_avatar.png'),
+                        ),
+                        title: Text('Nombre Apellido'),
+                        subtitle: Text('Mensaje'),
+                        trailing: Text('Fecha'),
+                      ),
                     ),
-                    title: Text('Nombre Apellido'),
-                    subtitle: Text('Mensaje'),
-                    trailing: Text('Fecha'),
                   ),
                 );
               },
