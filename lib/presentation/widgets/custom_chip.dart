@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:myhealthmate/presentation/screens/agendar_cita.dart';
 
 class CustomChip extends StatelessWidget {
   final String label;
