@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:map_launcher/map_launcher.dart';
 
 class AgendarCitaScreen extends StatefulWidget {
   const AgendarCitaScreen({Key? key}) : super(key: key);
@@ -10,6 +13,10 @@ class AgendarCitaScreen extends StatefulWidget {
 class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
   String motivoCita = 'Consulta';
   bool primeraVez = false;
+
+  double latitude = 20.608552;
+  double longitude = -103.414654;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,17 +35,17 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
                     children: [
                       const Image(
                         image: NetworkImage('https://picsum.photos/200'),
-                        width: 30,
+                        width: 120,
                       ),
                       const SizedBox(width: 10),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text('Dr. Juan Perez',
-                              style: TextStyle(fontSize: 16)),
+                              style: TextStyle(fontSize: 25)),
                           Text('Especialista',
                               style: TextStyle(
-                                  fontSize: 12, color: Colors.grey[600])),
+                                  fontSize: 20, color: Colors.grey[600])),
                         ],
                       ),
                     ],
@@ -51,8 +58,8 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text('Fecha y hora'),
-                          const Text('Zona horaria'),
+                          const Text('Lunes 30 de Febrero del 2050'),
+                          const Text('02:30 am (GMT-6)'),
                           InkWell(
                             splashColor: Colors.blueAccent,
                             highlightColor: Colors.blue,
@@ -106,7 +113,7 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
                                   });
                             },
                             child: const Text(
-                              "Cambiar de fecha",
+                              "Cambiar cita",
                               style: TextStyle(
                                 color: Colors.blue,
                               ),
@@ -118,10 +125,32 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
                   ),
                   const SizedBox(height: 10),
                   Row(
-                    children: const [
+                    children: [
                       Icon(Icons.location_on),
                       SizedBox(width: 20),
-                      Text('Ubicación del consultorio'),
+                      TextButton(
+                        onPressed: () async => {
+                          if (Platform.isIOS)
+                            {
+                              await MapLauncher.showMarker(
+                                mapType: MapType.apple,
+                                coords: Coords(latitude, longitude),
+                                title: "Consultorio",
+                                description: "Pues Aqui",
+                              )
+                            }
+                          else
+                            {
+                              await MapLauncher.showMarker(
+                                mapType: MapType.google,
+                                coords: Coords(latitude, longitude),
+                                title: "Consultorio",
+                                description: "Pues Aqui",
+                              )
+                            }
+                        },
+                        child: Text('Abrir en Mapa'),
+                      ),
                     ],
                   ),
                 ],
