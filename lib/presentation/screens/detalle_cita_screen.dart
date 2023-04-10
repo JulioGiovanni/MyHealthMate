@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:map_launcher/map_launcher.dart';
 import 'package:myhealthmate/presentation/screens/chat_screen.dart';
 
 class DetalleCitaScreen extends StatelessWidget {
@@ -6,6 +9,8 @@ class DetalleCitaScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double latitude = 20.608552;
+    double longitude = -103.414654;
     return Scaffold(
         appBar: AppBar(
           title: const Text('Detalles de la visita'),
@@ -90,7 +95,47 @@ class DetalleCitaScreen extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Divider(),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 5),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Row(
+                children: [
+                  Icon(
+                    Icons.location_on,
+                    color: Colors.grey,
+                  ),
+                  SizedBox(width: 16),
+                  TextButton(
+                    onPressed: () async => {
+                      if (Platform.isIOS)
+                        {
+                          await MapLauncher.showMarker(
+                            mapType: MapType.apple,
+                            coords: Coords(latitude, longitude),
+                            title: "Consultorio",
+                            description: "Pues Aqui",
+                          )
+                        }
+                      else
+                        {
+                          await MapLauncher.showMarker(
+                            mapType: MapType.google,
+                            coords: Coords(latitude, longitude),
+                            title: "Consultorio",
+                            description: "Pues Aqui",
+                          )
+                        }
+                    },
+                    child: Text('Abrir en Mapa'),
+                  ),
+                ],
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Divider(),
+            ),
+            const SizedBox(height: 10),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Row(
