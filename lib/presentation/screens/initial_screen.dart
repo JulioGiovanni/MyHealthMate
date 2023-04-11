@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:myhealthmate/presentation/constants/nav_items.dart';
 import 'package:myhealthmate/presentation/widgets/citas.dart';
 import 'package:myhealthmate/presentation/widgets/especialistas_card_busqueda.dart';
-import 'package:myhealthmate/presentation/widgets/home.dart';
 import 'package:myhealthmate/presentation/widgets/mensajes.dart';
 import 'package:myhealthmate/presentation/widgets/perfil.dart';
 
