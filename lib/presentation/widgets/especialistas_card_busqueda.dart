@@ -56,7 +56,7 @@ class EspecialistasBusqueda extends StatelessWidget {
                   const SizedBox(width: 5),
                   const Text('Consulta'),
                   Expanded(child: Container()),
-                  const Text('Precio: \$ '),
+                  const Text('Precio: \$ 1000'),
                 ],
               ),
               const SizedBox(height: 10),
@@ -66,7 +66,7 @@ class EspecialistasBusqueda extends StatelessWidget {
                   SizedBox(width: 5),
                   Text('Próxima fecha:'),
                   SizedBox(width: 5),
-                  Text('Fecha'),
+                  Text('Lunes 30 de Febrero del 2050'),
                 ],
               ),
               Row(
