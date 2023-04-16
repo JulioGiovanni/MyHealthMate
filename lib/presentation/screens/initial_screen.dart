@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:myhealthmate/presentation/constants/nav_items.dart';
+import 'package:myhealthmate/presentation/providers/authentication_provider.dart';
 import 'package:myhealthmate/presentation/widgets/citas.dart';
 import 'package:myhealthmate/presentation/widgets/especialistas_card_busqueda.dart';
-import 'package:myhealthmate/presentation/widgets/home.dart';
 import 'package:myhealthmate/presentation/widgets/mensajes.dart';
 import 'package:myhealthmate/presentation/widgets/perfil.dart';
+import 'package:provider/provider.dart';
+
+import '../widgets/authentication_widgets/no_login.dart';
 
 //TODO: Make the index change with state manager and make the screen a stateless widget
 class InitialScreen extends StatefulWidget {
@@ -21,7 +24,8 @@ class _InitialScreenState extends State<InitialScreen> {
     const EspecialistasBusqueda(),
     const Citas(),
     const Mensajes(),
-    const Perfil()
+    const Perfil(),
+    const NoLogin(),
   ];
 
   @override
@@ -35,7 +39,11 @@ class _InitialScreenState extends State<InitialScreen> {
           title: Text(navBarItems[_currentIndex].title),
         ),
         body: IndexedStack(
-          index: _currentIndex,
+          index: _currentIndex == 0
+              ? _currentIndex
+              : (context.watch<AuthenticationProvider>().loggedIn
+                  ? _currentIndex
+                  : 4),
           children: _pagesList,
         ),
         bottomNavigationBar: NavigationBar(

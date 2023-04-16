@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/authentication_provider.dart';
 
 class Perfil extends StatelessWidget {
   const Perfil({super.key});
@@ -75,6 +78,32 @@ class Perfil extends StatelessWidget {
               ),
             ),
           ),
+          Expanded(child: Container()),
+          Row(mainAxisAlignment: MainAxisAlignment.end, children: [
+            MaterialButton(
+              elevation: 3,
+              minWidth: 150,
+              onPressed: () {
+                context.read<AuthenticationProvider>().SignOut(context);
+              },
+              color: Colors.blueGrey,
+              padding: const EdgeInsets.all(0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: const [
+                  Icon(
+                    Icons.logout,
+                    color: Colors.white,
+                  ),
+                  Text('Sign out',
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold)),
+                ],
+              ),
+            )
+          ]),
         ],
       ),
     );
