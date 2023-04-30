@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:myhealthmate/presentation/providers/authentication_provider.dart';
 import 'package:provider/provider.dart';
+
+import '../providers/sign_up_provider.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({super.key});
@@ -36,7 +37,7 @@ class SignUpPage extends StatelessWidget {
                     height: 60,
                     onPressed: () {
                       context
-                          .read<AuthenticationProvider>()
+                          .read<SignUpProvider>()
                           .SignUpGoogle(context);
                       Navigator.pop(context);
                     },
@@ -93,7 +94,7 @@ class SignUpPage extends StatelessWidget {
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(), labelText: "Mail"),
                 controller:
-                    context.read<AuthenticationProvider>().mailSController,
+                    context.read<SignUpProvider>().mailSController,
                 keyboardType: TextInputType.text,
               ),
               const SizedBox(
@@ -104,7 +105,7 @@ class SignUpPage extends StatelessWidget {
                     border: OutlineInputBorder(),
                     labelText: "Verifica tu mail"),
                 controller: context
-                    .read<AuthenticationProvider>()
+                    .read<SignUpProvider>()
                     .confirmMailController,
                 keyboardType: TextInputType.text,
               ),
@@ -115,7 +116,7 @@ class SignUpPage extends StatelessWidget {
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(), labelText: "Password:"),
                 controller:
-                    context.read<AuthenticationProvider>().passSController,
+                    context.read<SignUpProvider>().passSController,
                 keyboardType: TextInputType.text,
               ),
               const SizedBox(
@@ -128,7 +129,7 @@ class SignUpPage extends StatelessWidget {
                     height: 60,
                     onPressed: () {
                       context
-                          .read<AuthenticationProvider>()
+                          .read<SignUpProvider>()
                           .SignUpMail(context);
                       Navigator.pop(context);
                     },

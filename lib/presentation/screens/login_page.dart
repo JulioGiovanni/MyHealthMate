@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:myhealthmate/presentation/providers/authentication_provider.dart';
 import 'package:provider/provider.dart';
+
+import '../providers/login_provider.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -33,7 +34,7 @@ class LoginPage extends StatelessWidget {
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(), labelText: "Mail:"),
                 controller:
-                    context.read<AuthenticationProvider>().mailController,
+                    context.read<LoginProvider>().mailController,
                 keyboardType: TextInputType.text,
               ),
               const SizedBox(
@@ -43,7 +44,7 @@ class LoginPage extends StatelessWidget {
                 decoration: const InputDecoration(
                     border: OutlineInputBorder(), labelText: "Password:"),
                 controller:
-                    context.read<AuthenticationProvider>().passController,
+                    context.read<LoginProvider>().passController,
                 keyboardType: TextInputType.text,
               ),
               const SizedBox(
@@ -55,7 +56,7 @@ class LoginPage extends StatelessWidget {
                     elevation: 0,
                     height: 60,
                     onPressed: () {
-                      context.read<AuthenticationProvider>().loginMail(context);
+                      context.read<LoginProvider>().loginMail(context);
                       Navigator.pop(context);
                     },
                     color: Colors.blue,
@@ -112,7 +113,7 @@ class LoginPage extends StatelessWidget {
                     height: 60,
                     onPressed: () {
                       context
-                          .read<AuthenticationProvider>()
+                          .read<LoginProvider>()
                           .loginGoogle(context);
                       Navigator.pop(context);
                     },

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:myhealthmate/presentation/providers/login_provider.dart';
 import 'package:provider/provider.dart';
-
-import '../providers/authentication_provider.dart';
 
 class Perfil extends StatelessWidget {
   const Perfil({super.key});
@@ -84,7 +83,7 @@ class Perfil extends StatelessWidget {
               elevation: 3,
               minWidth: 150,
               onPressed: () {
-                context.read<AuthenticationProvider>().SignOut(context);
+                context.read<LoginProvider>().SignOut(context);
               },
               color: Colors.blueGrey,
               padding: const EdgeInsets.all(0),
