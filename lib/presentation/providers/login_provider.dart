@@ -12,12 +12,17 @@ class LoginProvider with ChangeNotifier {
 
   var mailController = TextEditingController();
   var passController = TextEditingController();
+
   void loginMail(BuildContext context) {
-    authProvider.login(context);
+    //Al hacer login, despues de haber verificado las credenciales, se pasa como arguento un booleano que indica y habilita la vista de doctor de ser necesario (este valor booleano se obtiene del registro del usuario en la base de datos)
+    var isADoctor = true;
+    authProvider.toLogin(context, isADoctor);
   }
 
   void loginGoogle(BuildContext context) {
-    authProvider.login(context);
+    //Al hacer login, despues de haber verificado las credenciales, se pasa como arguento un booleano que indica y habilita la vista de doctor de ser necesario (este valor booleano se obtiene del registro del usuario en la base de datos)
+    var isADoctor = false;
+    authProvider.toLogin(context, isADoctor);
   }
 
   void SignOut(BuildContext context) {

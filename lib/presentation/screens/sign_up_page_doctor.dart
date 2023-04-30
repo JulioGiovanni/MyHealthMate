@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 
 import '../providers/sign_up_provider.dart';
 
-class SignUpPage extends StatelessWidget {
-  const SignUpPage({super.key});
+class SignUpPageDoctor extends StatelessWidget {
+  const SignUpPageDoctor({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -27,62 +27,69 @@ class SignUpPage extends StatelessWidget {
             ),
           ),
           const SizedBox(
-            height: 20,
-          ),
-          Row(children: [
-            Expanded(
-              child: MaterialButton(
-                elevation: 3,
-                height: 60,
-                onPressed: () {
-                  context.read<SignUpProvider>().SignUpGoogle(context);
-                  Navigator.pop(context);
-                },
-                color: Colors.white,
-                padding: const EdgeInsets.all(0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: const [
-                    Image(
-                      image: AssetImage('assets/google_icon.png'),
-                      height: 25,
-                    ),
-                    Text('Registrarse con Google',
-                        style: TextStyle(
-                          fontSize: 15,
-                        )),
-                  ],
-                ),
-              ),
-            )
-          ]),
-          const SizedBox(
             height: 30,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: Container(
-                  height: 1.0,
-                  width: 130.0,
-                  color: Colors.black,
-                ),
-              ),
-              const Text("o"),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: Container(
-                  height: 1.0,
-                  width: 130.0,
-                  color: Colors.black,
-                ),
-              ),
-            ],
+          TextField(
+            decoration: const InputDecoration(
+                border: OutlineInputBorder(), labelText: "Nombre(s)"),
+            controller: context.read<SignUpProvider>().nameController,
+            keyboardType: TextInputType.text,
           ),
           const SizedBox(
-            height: 30,
+            height: 10,
+          ),
+          TextField(
+            decoration: const InputDecoration(
+                border: OutlineInputBorder(), labelText: "Apellidos"),
+            controller: context.read<SignUpProvider>().lastNameController,
+            keyboardType: TextInputType.text,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          TextField(
+            decoration: const InputDecoration(
+                border: OutlineInputBorder(), labelText: "Numero de contacto"),
+            controller: context.read<SignUpProvider>().numberController,
+            keyboardType: TextInputType.number,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          TextField(
+            decoration: const InputDecoration(
+                border: OutlineInputBorder(), labelText: "Especialidad"),
+            controller: context.read<SignUpProvider>().specController,
+            keyboardType: TextInputType.text,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          TextField(
+            decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: "Universidad de egreso"),
+            controller: context.read<SignUpProvider>().uniController,
+            keyboardType: TextInputType.text,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          TextField(
+            decoration: const InputDecoration(
+                border: OutlineInputBorder(), labelText: "Años de experiencia"),
+            controller: context.read<SignUpProvider>().expController,
+            keyboardType: TextInputType.number,
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          TextField(
+            decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: "Número de cédula profesional"),
+            controller: context.read<SignUpProvider>().cedPController,
+            keyboardType: TextInputType.text,
           ),
           const SizedBox(
             height: 10,
@@ -120,10 +127,10 @@ class SignUpPage extends StatelessWidget {
           Row(children: [
             Expanded(
               child: MaterialButton(
-                elevation: 0,
+                elevation: 10,
                 height: 60,
                 onPressed: () {
-                  context.read<SignUpProvider>().SetIsDoctor(false);
+                  context.read<SignUpProvider>().SetIsDoctor(true);
                   context.read<SignUpProvider>().SignUpMail(context);
                   Navigator.pop(context);
                 },
@@ -137,6 +144,9 @@ class SignUpPage extends StatelessWidget {
               ),
             )
           ]),
+          const SizedBox(
+            height: 100,
+          ),
         ],
       ),
     );

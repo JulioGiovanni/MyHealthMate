@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:myhealthmate/presentation/screens/login_page.dart';
 import 'package:myhealthmate/presentation/screens/sign_up_page.dart';
+import 'package:myhealthmate/presentation/screens/sign_up_page_doctor.dart';
 
 class NoLogin extends StatelessWidget {
   const NoLogin({super.key});
@@ -13,7 +14,7 @@ class NoLogin extends StatelessWidget {
         children: [
           const Image(
             image: AssetImage('assets/app_icon.png'),
-            height: 350,
+            height: 300,
           ),
           const SizedBox(height: 15),
           const Text(
@@ -64,12 +65,35 @@ class NoLogin extends StatelessWidget {
               TextButton(
                   onPressed: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const SignUpPage()));
+                        builder: (context) => const SignUpPage()));
                   },
                   child: const Text(
                     "¡Registrate aqui!",
                     style: TextStyle(
                       color: Colors.blueAccent,
+                      fontSize: 15,
+                    ),
+                  ))
+            ],
+          ),
+          SizedBox(
+            height: 30,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const Text(
+                '¿Eres doctor? ',
+              ),
+              TextButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const SignUpPageDoctor()));
+                  },
+                  child: const Text(
+                    "¡Registrate para ofrecer tus servicios!",
+                    style: TextStyle(
+                      color: Colors.deepOrange,
                       fontSize: 15,
                     ),
                   ))

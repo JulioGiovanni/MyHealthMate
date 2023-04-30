@@ -10,8 +10,14 @@ class AuthenticationProvider with ChangeNotifier {
 
   bool _loggedIn = false;
   bool get loggedIn => _loggedIn;
+  bool _isADoctor = false; // Habilita vista de Doctor o de Usuario/Paciente
 
-  void login(BuildContext context) {
+  void setIsADoctor(bool b) {
+    _isADoctor = b;
+  }
+
+  void toLogin(BuildContext context, bool isADoctor) {
+    _isADoctor = isADoctor;
     _loggedIn = true;
     notifyListeners();
   }
