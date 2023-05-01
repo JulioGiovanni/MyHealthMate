@@ -15,13 +15,15 @@ class LoginProvider with ChangeNotifier {
 
   void loginMail(BuildContext context) {
     //Al hacer login, despues de haber verificado las credenciales, se pasa como arguento un booleano que indica y habilita la vista de doctor de ser necesario (este valor booleano se obtiene del registro del usuario en la base de datos)
-    var isADoctor = true;
+    var isADoctor =
+        true; //por ahora, para pruebas, al iniciar sesión con mail y password se toma como Doctor
     authProvider.toLogin(context, isADoctor);
   }
 
   void loginGoogle(BuildContext context) {
     //Al hacer login, despues de haber verificado las credenciales, se pasa como arguento un booleano que indica y habilita la vista de doctor de ser necesario (este valor booleano se obtiene del registro del usuario en la base de datos)
-    var isADoctor = false;
+    var isADoctor =
+        false; //por ahora, para pruebas, al iniciar sesión con gmail se toma como Paciente
     authProvider.toLogin(context, isADoctor);
   }
 
