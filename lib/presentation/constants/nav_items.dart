@@ -8,3 +8,10 @@ const navBarItems = [
   NavItem('Mensajes', Icons.message_rounded, Colors.pink),
   NavItem('Mi Perfil', Icons.person_rounded, Colors.purple),
 ];
+
+const navBarItemsDoctor = [
+  NavItem('Por Atender', Icons.home, Colors.blue),
+  // NavItem('Favorites', Icons.favorite, Colors.pink),
+  NavItem('Mensajes', Icons.message_rounded, Colors.pink),
+  NavItem('Mi Perfil', Icons.person_rounded, Colors.purple),
+];
