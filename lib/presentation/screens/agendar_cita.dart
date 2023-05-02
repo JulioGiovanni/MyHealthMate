@@ -1,7 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:map_launcher/map_launcher.dart';
+
+import '../widgets/abrir_mapa_button.dart';
 
 class AgendarCitaScreen extends StatefulWidget {
   const AgendarCitaScreen({Key? key}) : super(key: key);
@@ -128,29 +127,7 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
                     children: [
                       Icon(Icons.location_on),
                       SizedBox(width: 20),
-                      TextButton(
-                        onPressed: () async => {
-                          if (Platform.isIOS)
-                            {
-                              await MapLauncher.showMarker(
-                                mapType: MapType.apple,
-                                coords: Coords(latitude, longitude),
-                                title: "Consultorio",
-                                description: "Pues Aqui",
-                              )
-                            }
-                          else
-                            {
-                              await MapLauncher.showMarker(
-                                mapType: MapType.google,
-                                coords: Coords(latitude, longitude),
-                                title: "Consultorio",
-                                description: "Pues Aqui",
-                              )
-                            }
-                        },
-                        child: Text('Abrir en Mapa'),
-                      ),
+                      VerEnMapaButton(latitude: latitude, longitude: longitude),
                     ],
                   ),
                 ],
@@ -355,3 +332,4 @@ class _AgendarCitaScreenState extends State<AgendarCitaScreen> {
         ));
   }
 }
+

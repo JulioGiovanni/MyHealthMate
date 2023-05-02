@@ -1,8 +1,6 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
-import 'package:map_launcher/map_launcher.dart';
 import 'package:myhealthmate/presentation/screens/chat_screen.dart';
+import 'package:myhealthmate/presentation/widgets/abrir_mapa_button.dart';
 
 class DetalleCitaScreen extends StatelessWidget {
   const DetalleCitaScreen({Key? key}) : super(key: key);
@@ -105,29 +103,7 @@ class DetalleCitaScreen extends StatelessWidget {
                     color: Colors.grey,
                   ),
                   SizedBox(width: 16),
-                  TextButton(
-                    onPressed: () async => {
-                      if (Platform.isIOS)
-                        {
-                          await MapLauncher.showMarker(
-                            mapType: MapType.apple,
-                            coords: Coords(latitude, longitude),
-                            title: "Consultorio",
-                            description: "Pues Aqui",
-                          )
-                        }
-                      else
-                        {
-                          await MapLauncher.showMarker(
-                            mapType: MapType.google,
-                            coords: Coords(latitude, longitude),
-                            title: "Consultorio",
-                            description: "Pues Aqui",
-                          )
-                        }
-                    },
-                    child: Text('Abrir en Mapa'),
-                  ),
+                  VerEnMapaButton(latitude: latitude, longitude: longitude)
                 ],
               ),
             ),
