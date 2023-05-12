@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:myhealthmate/presentation/constants/nav_items.dart';
-import 'package:myhealthmate/presentation/providers/authentication_provider.dart';
+import 'package:myhealthmate/presentation/providers/auth.provider.dart';
 import 'package:myhealthmate/presentation/widgets/citas.dart';
 import 'package:myhealthmate/presentation/widgets/doctores/home_doctor.dart';
-import 'package:myhealthmate/presentation/widgets/especialistas_card_busqueda.dart';
+import 'package:myhealthmate/presentation/widgets/home.dart';
 import 'package:myhealthmate/presentation/widgets/mensajes.dart';
 import 'package:myhealthmate/presentation/widgets/perfil.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/authentication_widgets/no_login.dart';
 
-//TODO: Make the index change with state manager and make the screen a stateless widget
 class InitialScreen extends StatefulWidget {
-  const InitialScreen({Key? key}) : super(key: key);
-
+  const InitialScreen({Key? key, this.indexParameter}) : super(key: key);
+  final int? indexParameter;
   @override
   State<InitialScreen> createState() => _InitialScreenState();
 }
@@ -21,9 +20,8 @@ class InitialScreen extends StatefulWidget {
 class _InitialScreenState extends State<InitialScreen> {
   int _currentIndex = 0;
   int _currentIndexD = 0;
-  // const Home(),
   final _pagesList = [
-    const EspecialistasBusqueda(),
+    const Home(),
     const Citas(),
     const Mensajes(),
     const Perfil(),
@@ -36,6 +34,12 @@ class _InitialScreenState extends State<InitialScreen> {
   ];
 
   @override
+  void initState() {
+    super.initState();
+    _currentIndex = widget.indexParameter ?? 0;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         // drawer: Drawer(
@@ -43,26 +47,30 @@ class _InitialScreenState extends State<InitialScreen> {
         // ),
         appBar: AppBar(
           //Change the title of the app bar depending on the index
-          title: Text(context.watch<AuthenticationProvider>().isADoctor
+          title: Text(context.watch<AuthProvider>().isDoctor
               ? navBarItemsDoctor[_currentIndexD].title
               : navBarItems[_currentIndex].title),
         ),
-        body: IndexedStack(
-          index: context.watch<AuthenticationProvider>().loggedIn
-              ? (context.watch<AuthenticationProvider>().isADoctor
-                  ? _currentIndexD
-                  : _currentIndex)
-              : 4,
-          children: context.watch<AuthenticationProvider>().isADoctor
-              ? _pagesListDoctor
-              : _pagesList,
+        body: Consumer<AuthProvider>(
+          builder: (context, provider, child) {
+            return IndexedStack(
+              index: _currentIndex != 0
+                  ? provider.isAuth
+                      ? provider.isDoctor
+                          ? _currentIndexD
+                          : _currentIndex
+                      : 4
+                  : 0,
+              children: provider.isDoctor ? _pagesListDoctor : _pagesList,
+            );
+          },
         ),
         bottomNavigationBar: NavigationBar(
-          selectedIndex: context.watch<AuthenticationProvider>().isADoctor
+          selectedIndex: context.watch<AuthProvider>().isDoctor
               ? _currentIndexD
               : _currentIndex,
           onDestinationSelected: (value) => setState(() {
-            if (context.read<AuthenticationProvider>().isADoctor) {
+            if (context.read<AuthProvider>().isDoctor) {
               _currentIndexD = value;
               _currentIndex = value + 1;
             } else {
@@ -73,7 +81,7 @@ class _InitialScreenState extends State<InitialScreen> {
                 _currentIndexD = value - 1;
             }
           }),
-          destinations: context.watch<AuthenticationProvider>().isADoctor
+          destinations: context.watch<AuthProvider>().isDoctor
               ? navBarItemsDoctor
                   .map((e) => NavigationDestination(
                         icon: Icon(
